@@ -1,49 +1,55 @@
 <template>
-  <div class="home-page">
-    <div class="banner">
-      <div class="container">
-        <h1 class="logo-font">
-          conduit
-        </h1>
-        <p>A place to share your knowledge.</p>
+  <div class="container">
+    <div id="formContent" class="mx-auto">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first m-6">
+        <h4>Welcome</h4>
+        <ul v-if="errors" class="error-messages">
+          <li v-for="(v, k) in errors" :key="k">{{ v | error }}</li>
+        </ul>
       </div>
-    </div>
 
-    <div class="container page">
-      <div class="row">
-        <div class="col-md-9">
-          <Suspense>
-            <template #default>
-              <ArticlesList use-global-feed use-my-feed use-tag-feed />
-            </template>
-            <template #fallback>
-              Articles are downloading...
-            </template>
-          </Suspense>
-        </div>
+      <!-- Login Form -->
+      <form @submit.prevent="onSubmit">
+        <input
+          type="text"
+          id="email"
+          class="fadeIn second"
+          v-model="email"
+          name="email"
+          placeholder="email"
+        />
+        <input
+          type="password"
+          id="password"
+          class="fadeIn third"
+          v-model="password"
+          name="password"
+          placeholder="password"
+        />
+        <input type="submit" class="fadeIn fourth" value="Log In" />
+      </form>
 
-        <div class="col-md-3">
-          <div class="sidebar">
-            <Suspense>
-              <template #default>
-                <PopularTags />
-              </template>
-              <template #fallback>
-                Popular tags are downloading...
-              </template>
-            </Suspense>
-          </div>
-        </div>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <p class="text-xs-center">
+          <router-link :to="{ name: 'register' }">
+            Need an account?
+          </router-link>
+        </p>
+        <a class="underlineHover" href="#">Forgot Password?</a>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent } from 'vue';
 
   export default defineComponent({
     name: 'HomePage',
     components: {},
-  })
+  });
 </script>

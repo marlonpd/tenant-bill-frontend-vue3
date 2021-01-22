@@ -85,6 +85,34 @@
 
   export default defineComponent({
     name: 'RegisterPage',
-    components: {},
+    setup() {
+      const formRef = ref<HTMLFormElement | null>(null);
+      const form = reactive<PostRegisterForm>({
+        username: '',
+        email: '',
+        password: '',
+      });
+
+      const errors = ref<PostRegisterErrors>({});
+
+      const register = async () => {
+        if (!formRef.value?.checkValidity()) return;
+
+        const result = await postRegister(form);
+        if (result.isOk()) {
+          updateUser(result.value);
+          await routerPush('global-feed');
+        } else {
+          errors.value = await result.value.getErrors();
+        }
+      };
+
+      return {
+        formRef,
+        form,
+        register,
+        errors,
+      };
+    },
   });
 </script>

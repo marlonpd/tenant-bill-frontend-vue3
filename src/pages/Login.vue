@@ -6,12 +6,13 @@
           Login to your account
         </h1>
 
-        <form method="POST" action="/login">
+        <form @submit.prevent="login">
           <fieldset class="mb-4">
             <label class="block text-sm text-gray-900 mb-2"
               >Email address</label
             >
             <input
+              v-model="form.email"
               id="email"
               type="email"
               class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
@@ -34,6 +35,7 @@
               </a>
             </div>
             <input
+              v-model="form.password"
               id="password"
               type="password"
               class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
@@ -74,10 +76,42 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, reactive, ref } from 'vue';
+  import { useAuth } from '../composable/useAuth';
 
   export default defineComponent({
     name: 'LoginPage',
     components: {},
+    async setup() {
+      const auth = useAuth();
+      const formRef = ref<HTMLFormElement | null>(null);
+      const form = reactive<LoginCredential>({
+        email: '',
+        password: '',
+      });
+
+      const login = async () => {
+        await auth.submitLogin(form);
+      };
+      // const errors = ref<PostRegisterErrors>({});
+
+      // const register = async () => {
+      //   if (!formRef.value?.checkValidity()) return;
+
+      //   const result = await postRegister(form);
+      //   if (result.isOk()) {
+      //     updateUser(result.value);
+      //     await routerPush('global-feed');
+      //   } else {
+      //     errors.value = await result.value.getErrors();
+      //   }
+      // };
+
+      return {
+        formRef,
+        form,
+        login,
+      };
+    },
   });
 </script>

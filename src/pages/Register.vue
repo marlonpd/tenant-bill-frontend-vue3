@@ -6,13 +6,26 @@
           Create your account
         </h1>
 
-        <form method="POST" action="/login">
+        <form @submit.prevent="register">
+          <fieldset class="mb-4">
+            <label class="block text-sm text-gray-900 mb-2">Name</label>
+            <input
+              id="name"
+              v-model="form.name"
+              type="text"
+              class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
+              name="name"
+              required
+              autofocus
+            />
+          </fieldset>
           <fieldset class="mb-4">
             <label class="block text-sm text-gray-900 mb-2"
               >Email address</label
             >
             <input
               id="email"
+              v-model="form.email"
               type="email"
               class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
               name="email"
@@ -34,6 +47,7 @@
             </div>
             <input
               id="password"
+              v-model="form.password"
               type="password"
               class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
               name="password"
@@ -54,6 +68,7 @@
             </div>
             <input
               id="password"
+              v-model="form.password2"
               type="password"
               class="block w-full rounded-sm border bg-white py-2 px-3 text-sm"
               name="password"
@@ -81,37 +96,42 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, reactive, ref } from 'vue';
+  import { useAuth } from '../composable/useAuth';
 
   export default defineComponent({
     name: 'RegisterPage',
-    setup() {
+    async setup() {
+      const auth = useAuth();
       const formRef = ref<HTMLFormElement | null>(null);
-      const form = reactive<PostRegisterForm>({
-        username: '',
+      const form = reactive<RegisterCredential>({
         email: '',
+        name: '',
         password: '',
+        password2: '',
       });
 
-      const errors = ref<PostRegisterErrors>({});
-
       const register = async () => {
-        if (!formRef.value?.checkValidity()) return;
-
-        const result = await postRegister(form);
-        if (result.isOk()) {
-          updateUser(result.value);
-          await routerPush('global-feed');
-        } else {
-          errors.value = await result.value.getErrors();
-        }
+        await auth.submitRegister(form);
       };
+      // const errors = ref<PostRegisterErrors>({});
+
+      // const register = async () => {
+      //   if (!formRef.value?.checkValidity()) return;
+
+      //   const result = await postRegister(form);
+      //   if (result.isOk()) {
+      //     updateUser(result.value);
+      //     await routerPush('global-feed');
+      //   } else {
+      //     errors.value = await result.value.getErrors();
+      //   }
+      // };
 
       return {
         formRef,
         form,
         register,
-        errors,
       };
     },
   });

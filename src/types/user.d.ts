@@ -13,3 +13,15 @@ declare interface User {
   image: string | undefined;
   token: string;
 }
+
+declare interface LoginCredential {
+  email: string;
+  password: string;
+}
+
+declare interface RegisterCredential {
+  email: string;
+  name: string;
+  password: string;
+  password2: string;
+}

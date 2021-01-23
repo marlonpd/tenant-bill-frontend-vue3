@@ -1,6 +1,13 @@
 <template>
   <Header />
-  <RouterView />
+  <Suspense>
+    <template #default>
+      <RouterView />
+    </template>
+    <template #fallback>
+      <span>Loading...</span>
+    </template>
+  </Suspense>
   <Footer />
 </template>
 

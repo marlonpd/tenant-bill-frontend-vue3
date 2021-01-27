@@ -8,6 +8,7 @@
       <span>Loading...</span>
     </template>
   </Suspense>
+  <Toast position="bottom-right" />
   <Footer />
 </template>
 

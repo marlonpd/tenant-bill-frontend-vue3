@@ -78,7 +78,9 @@
 <script lang="ts">
   import { defineComponent, reactive, ref } from 'vue';
   import { useAuth } from '../composable/useAuth';
-
+  import { useStore } from 'vuex';
+  import { LOGIN } from '../store/actions.type';
+  import { routerPush } from '../router';
   export default defineComponent({
     name: 'LoginPage',
     components: {},
@@ -90,8 +92,16 @@
         password: '',
       });
 
+      const store = useStore();
+
       const login = async () => {
-        await auth.submitLogin(form);
+        console.log('called login');
+        const result = await store.dispatch(LOGIN, form);
+
+        console.log(' second then ');
+        console.log(result);
+        await routerPush('tenants');
+        // await auth.submitLogin(form);
       };
       // const errors = ref<PostRegisterErrors>({});
 

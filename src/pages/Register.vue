@@ -98,11 +98,14 @@
 <script lang="ts">
   import { defineComponent, reactive, ref } from 'vue';
   import { useAuth } from '../composable/useAuth';
+  import { useToast } from 'primevue/usetoast';
 
   export default defineComponent({
     name: 'RegisterPage',
     async setup() {
       const auth = useAuth();
+      const toast = useToast();
+
       const formRef = ref<HTMLFormElement | null>(null);
       const form = reactive<RegisterCredential>({
         email: '',
@@ -112,7 +115,14 @@
       });
 
       const register = async () => {
-        await auth.submitRegister(form);
+        const result = await auth.submitRegister(form).catch((e) => {
+          toast.add({
+            severity: 'error',
+            summary: 'Error encountered',
+            detail: e.response.data.message,
+            life: 3000,
+          });
+        });
       };
       // const errors = ref<PostRegisterErrors>({});
 

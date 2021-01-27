@@ -6,12 +6,9 @@ declare interface Profile {
 }
 
 declare interface User {
-  id: number;
+  id: string | undefined;
   email: string;
-  username: string;
-  bio: string | undefined;
-  image: string | undefined;
-  token: string;
+  name: string;
 }
 
 declare interface LoginCredential {

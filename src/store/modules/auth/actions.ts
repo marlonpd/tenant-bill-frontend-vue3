@@ -14,6 +14,7 @@ import {
 } from '../../mutations.type';
 import { State } from './state';
 import { registerAccount, loginAccount } from '../../../services/auth';
+import JwtService from '../../../services/jwt';
 
 export type Actions = {
   [LOGIN](
@@ -37,12 +38,19 @@ const actions: ActionTree<State, State> & Actions = {
     return new Promise((resolve, reject) =>
       loginAccount(loginCredential)
         .then((response: any) => {
-          context.commit(SET_AUTH, response);
+          console.log('successful ');
+          console.log(response);
+          console.log('successful ');
+          const token: string = response.token;
+          const user: User = response.user;
+          JwtService.saveToken(token);
+          context.commit(SET_AUTH, user);
           resolve(response);
         })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, [response.data.error]);
-          reject();
+        .catch((response: any) => {
+          console.log(response);
+          // context.commit(SET_ERROR, [response.data.error]);
+          reject(response);
         })
     );
   },

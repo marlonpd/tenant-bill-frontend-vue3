@@ -9,6 +9,7 @@ declare interface User {
   id: string | undefined;
   email: string;
   name: string;
+  token: string | undefined;
 }
 
 declare interface LoginCredential {

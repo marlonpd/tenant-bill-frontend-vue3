@@ -5,6 +5,9 @@ import VueAxios from 'vue-axios';
 import { router } from './router';
 import './assets/css/tailwind.css';
 import 'primeflex/primeflex.css';
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
 import registerGlobalComponents from './plugins/global-components';
 
 import { store } from './store';

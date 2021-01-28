@@ -81,6 +81,8 @@
   import { useStore } from 'vuex';
   import { LOGIN } from '../store/actions.type';
   import { routerPush } from '../router';
+  import { useToast } from 'primevue/usetoast';
+
   export default defineComponent({
     name: 'LoginPage',
     components: {},
@@ -93,15 +95,23 @@
       });
 
       const store = useStore();
+      const taost = useToast();
 
       const login = async () => {
-        console.log('called login');
-        const result = await store.dispatch(LOGIN, form);
-
-        console.log(' second then ');
-        console.log(result);
-        await routerPush('tenants');
-        // await auth.submitLogin(form);
+        await store
+          .dispatch(LOGIN, form)
+          .then(async () => {
+            await routerPush('tenants');
+          })
+          .catch((e) => {
+            console.log(e);
+            taost.add({
+              severity: 'error',
+              summary: 'Error encountered',
+              detail: e.response.data.message,
+              life: 3000,
+            });
+          });
       };
       // const errors = ref<PostRegisterErrors>({});
 

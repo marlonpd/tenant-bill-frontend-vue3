@@ -115,14 +115,21 @@
       });
 
       const register = async () => {
-        const result = await auth.submitRegister(form).catch((e) => {
-          toast.add({
-            severity: 'error',
-            summary: 'Error encountered',
-            detail: e.response.data.message,
-            life: 3000,
+        const result = await auth
+          .submitRegister(form)
+          .then((response) => {
+            if (response.data.status === 'success') {
+              console.log('success');
+            }
+          })
+          .catch((e) => {
+            toast.add({
+              severity: 'error',
+              summary: 'Error encountered',
+              detail: e.response.data.message,
+              life: 3000,
+            });
           });
-        });
       };
       // const errors = ref<PostRegisterErrors>({});
 

@@ -20,6 +20,13 @@
 
         <router-link
           class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
+          to="/logout"
+        >
+          Logout
+        </router-link>
+
+        <router-link
+          class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
           to="/register"
         >
           Register
@@ -78,9 +85,16 @@
 </template>
 
 <script lang="ts">
-  import { Vue } from 'vue-class-component';
+  import { Options, Vue } from 'vue-class-component';
 
-  export default class Header extends Vue {}
+  @Options({
+    props: {
+      msg: String,
+    },
+  })
+  export default class Header extends Vue {
+    msg!: string;
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,6 +6,7 @@ import {
 } from '../../mutations.type';
 import { MutationTree } from 'vuex';
 import { State } from './state';
+import JwtService from '../../../services/jwt';
 
 export type Mutations = {
   [SET_ERROR](state: State, error: any): void;
@@ -22,7 +23,7 @@ const mutations: MutationTree<State> & Mutations = {
     state.isAuthenticated = true;
     state.user = data.user;
     state.errors = {};
-    // JwtService.saveToken(data.token);
+    JwtService.saveToken(data.token);
     // console.log('tok' + JwtService.getToken());
   },
   [SET_SUCCESS_REGISTRATION](state) {
@@ -30,9 +31,9 @@ const mutations: MutationTree<State> & Mutations = {
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;
-    // state.user = {};
-    // state.errors = {};
-    // JwtService.destroyToken();
+    state.user = { id: '', name: '', email: '', token: '' };
+    state.errors = {};
+    JwtService.destroyToken();
   },
 };
 

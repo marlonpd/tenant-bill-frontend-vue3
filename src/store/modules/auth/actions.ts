@@ -42,9 +42,9 @@ const actions: ActionTree<State, State> & Actions = {
           console.log(response);
           console.log('successful ');
           const token: string = response.token;
-          const user: User = response.user;
+          // const user: User = response.user;
           JwtService.saveToken(token);
-          context.commit(SET_AUTH, user);
+          context.commit(SET_AUTH, response);
           resolve(response);
         })
         .catch((response: any) => {
@@ -84,8 +84,8 @@ const actions: ActionTree<State, State> & Actions = {
     //   context.commit(PURGE_AUTH);
     // }
   },
-  [UPDATE_USER](context: ActionContext<State, State>, payload: any) {
-    const { email, username, image, bio } = payload;
+  [UPDATE_USER](context: ActionContext<State, State>, user: User) {
+    const { id, email, name, token } = user;
   },
 };
 

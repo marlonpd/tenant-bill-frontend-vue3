@@ -1,8 +1,11 @@
 //import { ref } from 'vue';
 import { registerAccount, loginAccount } from '../services/auth';
+import { LOGOUT } from '../store/actions.type';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export function useAuth() {
-  // const tags = ref<string[]>([]);
+  const store = useStore();
 
   async function submitRegister(registerCredential: RegisterCredential) {
     return await registerAccount(registerCredential);
@@ -12,26 +15,16 @@ export function useAuth() {
     return await loginAccount(loginCredential);
   }
 
-  // watch(
-  //   () => $store.isSuccessRegistration,
-  //   if (isSuccessRegistration) {
-  //     flashMessage.show({
-  //         status: 'success',
-  //         title: 'Success!',
-  //         message: 'Successfully created an account!'
-  //     });
-  //     setTimeout(function(){
-  //         self.$router.push({
-  //             name: 'login'
-  //         });
-  //     }, 3000);
-  // }
-  //   },
-  //   { immediate: true },
-  // )
+  function doLogout() {
+    store.dispatch(LOGOUT);
+  }
+
+  const isAuthenticated = computed(() => store.getters.isAuthenticated);
 
   return {
     submitRegister,
     submitLogin,
+    doLogout,
+    isAuthenticated,
   };
 }

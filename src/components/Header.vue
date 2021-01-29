@@ -14,18 +14,21 @@
         <router-link
           class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
           to="/login"
+          v-if="!isAuthenticated"
         >
           Login
         </router-link>
 
-        <router-link
+        <a
+          v-if="isAuthenticated"
           class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
-          to="/logout"
+          @click="logout()"
         >
           Logout
-        </router-link>
+        </a>
 
         <router-link
+          v-if="!isAuthenticated"
           class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
           to="/register"
         >
@@ -85,16 +88,26 @@
 </template>
 
 <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+  import { routerPush } from '../router';
+  import { useAuth } from '../composable/useAuth';
 
-  @Options({
-    props: {
-      msg: String,
+  export default {
+    name: 'Header',
+    setup() {
+      const auth = useAuth();
+      const isAuthenticated = auth.isAuthenticated;
+
+      const logout = () => {
+        auth.doLogout();
+        routerPush('home');
+      };
+
+      return {
+        logout,
+        isAuthenticated,
+      };
     },
-  })
-  export default class Header extends Vue {
-    msg!: string;
-  }
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

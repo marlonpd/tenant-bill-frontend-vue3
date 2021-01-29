@@ -87,7 +87,6 @@
     name: 'LoginPage',
     components: {},
     async setup() {
-      const auth = useAuth();
       const formRef = ref<HTMLFormElement | null>(null);
       const form = reactive<LoginCredential>({
         email: '',
@@ -95,7 +94,7 @@
       });
 
       const store = useStore();
-      const taost = useToast();
+      const toast = useToast();
 
       const login = async () => {
         await store
@@ -104,8 +103,7 @@
             await routerPush('tenants');
           })
           .catch((e) => {
-            console.log(e);
-            taost.add({
+            toast.add({
               severity: 'error',
               summary: 'Error encountered',
               detail: e.response.data.message,
@@ -113,19 +111,6 @@
             });
           });
       };
-      // const errors = ref<PostRegisterErrors>({});
-
-      // const register = async () => {
-      //   if (!formRef.value?.checkValidity()) return;
-
-      //   const result = await postRegister(form);
-      //   if (result.isOk()) {
-      //     updateUser(result.value);
-      //     await routerPush('global-feed');
-      //   } else {
-      //     errors.value = await result.value.getErrors();
-      //   }
-      // };
 
       return {
         formRef,

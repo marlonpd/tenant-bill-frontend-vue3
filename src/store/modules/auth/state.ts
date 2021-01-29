@@ -10,7 +10,7 @@ export type State = {
 const state: State = {
   errors: null,
   user: { id: '', email: '', name: '', token: JwtService.getToken() || '' },
-  isAuthenticated: false,
+  isAuthenticated: JwtService.getToken() !== undefined,
   isSuccessRegistration: false,
 };
 

@@ -29,13 +29,18 @@ service.interceptors.response.use((response) => {
   console.log(response);
   if (response.status !== 200) return Promise.reject(response.data);
 
-  return response.data;
+  return response;
 });
 
 export const setHeader = () => {
-  service.defaults.headers.common[
-    'Authorization'
-  ] = `Bearer ${JwtService.getToken()}`;
+  console.log('Setting headers....');
+  console.log(JwtService.getToken());
+  if (JwtService.getToken()) {
+    console.log('Token found....');
+    service.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${JwtService.getToken()}`;
+  }
 };
 
 export const runGet = (resource: string) => {

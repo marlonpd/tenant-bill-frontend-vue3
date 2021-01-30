@@ -115,7 +115,7 @@
       });
 
       const register = async () => {
-        const result = await auth
+        await auth
           .submitRegister(form)
           .then((response) => {
             if (response.data.status === 'success') {

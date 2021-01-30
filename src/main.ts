@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import axios from './services/axios';
+import axios, { setHeader } from './services/axios';
 import VueAxios from 'vue-axios';
 import { router } from './router';
 import './assets/css/tailwind.css';
@@ -10,6 +10,7 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import registerGlobalComponents from './plugins/global-components';
 
+setHeader();
 import { store } from './store';
 
 const app = createApp(App);

@@ -16,3 +16,4 @@ export const FETCH_TENANT = 'fetchTenant';
 export const FETCH_POWER_RATE = 'fetchPowerRate';
 export const FETCH_RATE_PER_KWH = 'fetchRatePerKwh';
 export const DELETE_TENANT = 'deleteTenant';
+export const UPDATE_TENANT = 'updateTenant';

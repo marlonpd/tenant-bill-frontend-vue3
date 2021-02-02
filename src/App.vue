@@ -9,6 +9,7 @@
     </template>
   </Suspense>
   <Toast position="bottom-right" />
+  <ConfirmDialog></ConfirmDialog>
   <Footer />
 </template>
 

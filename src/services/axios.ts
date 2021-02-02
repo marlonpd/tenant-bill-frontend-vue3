@@ -33,10 +33,9 @@ service.interceptors.response.use((response) => {
 });
 
 export const setHeader = () => {
-  console.log('Setting headers....');
+  console.log('JwtService.getToken()');
   console.log(JwtService.getToken());
   if (JwtService.getToken()) {
-    console.log('Token found....');
     service.defaults.headers.common[
       'Authorization'
     ] = `Bearer ${JwtService.getToken()}`;

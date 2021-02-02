@@ -19,12 +19,11 @@ const mutations: MutationTree<State> & Mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },
-  [SET_AUTH](state, data) {
+  [SET_AUTH](state, response) {
     state.isAuthenticated = true;
-    state.user = data.user;
+    state.user = response.data.user;
     state.errors = {};
-    JwtService.saveToken(data.token);
-    // console.log('tok' + JwtService.getToken());
+    JwtService.saveToken(response.data.token);
   },
   [SET_SUCCESS_REGISTRATION](state) {
     state.isSuccessRegistration = true;

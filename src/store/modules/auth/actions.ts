@@ -41,8 +41,10 @@ const actions: ActionTree<State, State> & Actions = {
           console.log('successful ');
           console.log(response);
           console.log('successful ');
-          const token: string = response.token;
+          const token: string = response.data.token;
           // const user: User = response.user;
+
+          console.log('successful ' + token);
           JwtService.saveToken(token);
           context.commit(SET_AUTH, response);
           resolve(response);

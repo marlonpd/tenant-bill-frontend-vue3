@@ -4,9 +4,10 @@ import HomePage from './pages/Home.vue';
 import LoginPage from './pages/Login.vue';
 import RegisterPage from './pages/Register.vue';
 import TenantsPage from './pages/Tenants.vue';
+import MeterReadingsPage from './pages/MeterReadings.vue';
 import JwtService from './services/jwt';
 
-export type AppRouteNames = 'home' | 'login' | 'tenants';
+export type AppRouteNames = 'home' | 'login' | 'tenants' | 'meter-readings';
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -27,6 +28,11 @@ export const router = createRouter({
       component: RegisterPage,
     },
     { name: 'tenants', path: '/tenants', component: TenantsPage },
+    {
+      name: 'meter.readings',
+      path: '/meter-readings',
+      component: MeterReadingsPage,
+    },
   ],
 });
 

@@ -101,9 +101,6 @@
 
       const deleteTenant = async (tenant: Tenant) => {
         selectedTenantId.value = Number(tenant.id);
-
-        console.log(confirm);
-
         confirm.require({
           message: 'Are you sure you want to delete?',
           header: 'Confirmation',

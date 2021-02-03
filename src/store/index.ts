@@ -9,5 +9,5 @@ export const store = createStore({
 });
 
 export function useStore() {
-  return store as Store;
+  return store as Store<>;
 }

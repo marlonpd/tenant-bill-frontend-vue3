@@ -84,11 +84,6 @@
         meterNumber: '',
         meterInitialReading: '',
       });
-
-      // const tenant = computed(() =>
-      //   store.getters.getTenantById(Number(props.id))
-      // );
-
       const isCreateNewTenant = ref(false);
 
       const toggleCreateNewTenant = () => {
@@ -105,7 +100,7 @@
         }
       };
 
-      onMounted(async () => {
+      onMounted(() => {
         setFields();
       });
 
@@ -119,11 +114,12 @@
           state.meterNumber === '' ||
           state.meterInitialReading === ''
         ) {
-          // this.flashMessage.show({
-          //     status: 'error',
-          //     title: 'Error!',
-          //     message: 'Please fill all the field.'
-          // });
+          toast.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: 'Please fill all the field.',
+            life: 3000,
+          });
 
           return;
         }
@@ -143,11 +139,6 @@
               detail: 'Successfully added!',
               life: 3000,
             });
-            // this.flashMessage.show({
-            //     status: 'success',
-            //     title: 'Success!',
-            // //    message: response.message
-            // })
           });
       };
 
@@ -158,9 +149,5 @@
         isCreateNewTenant,
       };
     },
-    // },
-    // computed: {
-
-    // },
   });
 </script>

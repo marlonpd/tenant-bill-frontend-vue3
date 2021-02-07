@@ -69,6 +69,7 @@
   } from 'vue';
   import { useStore } from 'vuex';
   import { useToast } from 'primevue/usetoast';
+  import { useTenant } from '../../composable/useTenant';
 
   export default defineComponent({
     name: 'EditTenant',
@@ -78,6 +79,7 @@
     setup(props) {
       const toast = useToast();
       const store = useStore();
+      const uTenant = useTenant();
       const state = reactive({
         id: '',
         name: '',
@@ -91,7 +93,7 @@
       };
 
       const setFields = () => {
-        const tenant = store.getters.getTenantById(Number(props.id));
+        const tenant = uTenant.getTenantById(Number(props.id));
         if (tenant) {
           state.id = tenant.id;
           state.name = tenant.name;

@@ -23,10 +23,15 @@ export function useTenant() {
     await store.dispatch(DELETE_TENANT, id);
   };
 
+  const getTenantById = (id: number) => {
+    return store.getters.getTenantById(id);
+  };
+
   return {
     allTenants,
     fetchTenants,
     deleteTenant,
     updateTenant,
+    getTenantById,
   };
 }

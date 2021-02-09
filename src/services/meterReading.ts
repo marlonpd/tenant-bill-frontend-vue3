@@ -1,7 +1,7 @@
 import { runPost, runGet } from './axios';
 
-export const fetchMeterReadings = async () => {
-  return await runGet('api/meter-readings');
+export const fetchMeterReadings = async (tenantId: number) => {
+  return await runGet(`api/meter-readings/${tenantId}`);
 };
 
 export const updateMeterReading = async (meterReading: MeterReading) => {

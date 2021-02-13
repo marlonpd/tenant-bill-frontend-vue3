@@ -18,6 +18,13 @@
         >
           Login
         </router-link>
+        <router-link
+          v-if="isAuthenticated"
+          class="inline-block no-underline bg-black text-white text-sm py-2 px-3 mr-2"
+          to="/power-rates"
+        >
+          Power Rates
+        </router-link>
 
         <a
           v-if="isAuthenticated"

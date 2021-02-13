@@ -5,6 +5,7 @@ import LoginPage from './pages/Login.vue';
 import RegisterPage from './pages/Register.vue';
 import TenantsPage from './pages/Tenants.vue';
 import MeterReadingsPage from './pages/MeterReadings.vue';
+import PowerRatesPage from './pages/PowerRates.vue';
 import JwtService from './services/jwt';
 
 export type AppRouteNames = 'home' | 'login' | 'tenants' | 'meter-readings';
@@ -32,6 +33,11 @@ export const router = createRouter({
       name: 'meter.readings',
       path: '/meter-readings',
       component: MeterReadingsPage,
+    },
+    {
+      name: 'power.rates',
+      path: '/power-rates',
+      component: PowerRatesPage,
     },
   ],
 });

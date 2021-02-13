@@ -9,6 +9,7 @@ export const CREATE_NEW_TENANT = 'createNewTenant';
 export const ADD_NEW_TENANT = 'addNewTenant';
 export const CREATE_NEW_POWER_RATE = 'createNewPowerRate';
 export const ADD_NEW_POWER_RATE = 'addNewPowerRate';
+export const DELETE_POWER_RATE = 'deletePowerRate';
 export const FETCH_POWER_RATES = 'fetchPowerRates';
 export const FETCH_METER_READINGS = 'fetchMeterReadings';
 export const ADD_NEW_METER_READING = 'addNewMeterReading';

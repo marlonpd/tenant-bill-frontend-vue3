@@ -82,8 +82,8 @@
     components: { CreateTenant, EditTenant },
     async setup() {
       const uTenant = useTenant();
-      const selectedTenantId = ref(0);
-      const isEditTenant = ref(false);
+      const selectedTenantId = ref<number>(0);
+      const isEditTenant = ref<boolean>(false);
       const confirm = useConfirm();
 
       onMounted(async () => {

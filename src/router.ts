@@ -31,7 +31,7 @@ export const router = createRouter({
     { name: 'tenants', path: '/tenants', component: TenantsPage },
     {
       name: 'meter.readings',
-      path: '/meter-readings',
+      path: '/meter-readings/:tenantId',
       component: MeterReadingsPage,
     },
     {

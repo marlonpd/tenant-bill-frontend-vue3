@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container max-w-4xl mx-auto text-center pb-10">
     <h3>Meter Reading</h3>
     <h5>{{ currentTenant.name }}</h5>
     <div class="row m-auto">
@@ -30,22 +30,19 @@
               {{ reading.presentReadingKwh }}
             </th>
             <th scope="col">{{ reading.consumedKwh }}</th>
-            <th scope="col">{{ reading.ratePerKwh }}</th>
+            <th scope="col">{{ reading.rate }}</th>
             <th scope="col">{{ reading.bill }}</th>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- <div class="fixed-bottom w-100" style="width:100%;">
+    <div class="fixed-bottom w-100" style="width:100%;">
       <div class="container">
-        <v-add-meter-reading
-          :tenant="currentTenant"
-          :latestReading="latestReading"
-          :powerRate="powerRate"
-        ></v-add-meter-reading>
+        <CreateMeterReading></CreateMeterReading>
       </div>
-    </div> -->
+    </div>
+    -
   </div>
 </template>
 
@@ -57,10 +54,11 @@
   import { useConfirm } from 'primevue/useconfirm';
   import { routerPush } from '../router';
   import { useToast } from 'primevue/usetoast';
+  import CreateMeterReading from '../components/meterReading/CreateMeterReading.vue';
 
   export default defineComponent({
     name: 'MeterReadingsPage',
-    components: {},
+    components: { CreateMeterReading },
     async setup() {
       const uMeterReading = useMeterReading();
       const route = useRoute();
@@ -70,13 +68,15 @@
       const toast = useToast();
 
       let currentTenant = reactive<Tenant>({
-        id: '',
+        id: undefined,
         name: '',
         meterNumber: '',
         meterInitialReading: 0,
       });
 
       onMounted(async () => {
+        console.log('tenantId');
+        console.log(route.params.tenantId);
         if (!route.params.tenantId) {
           toast.add({
             severity: 'error',

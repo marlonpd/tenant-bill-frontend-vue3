@@ -10,7 +10,7 @@ import { State } from './state';
 export type Mutations = {
   [SET_TENANTS](state: State, tenants: Tenant[]): void;
   [SET_TENANT](state: State, tenant: Tenant): void;
-  [TENANT_REMOVE](state: State, tenantId: string): void;
+  [TENANT_REMOVE](state: State, tenantId: number): void;
   [APPEND_TENANT](state: State, tenant: Tenant): void;
 };
 const mutations: MutationTree<State> & Mutations = {

@@ -6,7 +6,18 @@
         <div class="row m-auto">
           <DataTable :value="allTenants">
             <Column field="id" header="ID"></Column>
-            <Column field="name" header="NAME"></Column>
+            <Column field="name" header="NAME">
+              <template #body="slotProps">
+                <router-link
+                  :to="{
+                    name: 'meter.readings',
+                    params: { tenantId: slotProps.data.id },
+                  }"
+                >
+                  {{ slotProps.data.name }}
+                </router-link>
+              </template>
+            </Column>
             <Column field="meterNumber" header="METER NUMBER"></Column>
             <Column header="ACTIONS">
               <template #body="slotProps">

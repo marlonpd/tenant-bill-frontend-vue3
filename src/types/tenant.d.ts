@@ -1,5 +1,5 @@
 declare interface Tenant {
-  id: string;
+  id?: number | undefined;
   name: string;
   meterNumber: string;
   meterInitialReading: number;

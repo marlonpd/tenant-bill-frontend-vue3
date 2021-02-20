@@ -4,7 +4,7 @@ import { State } from './state';
 export type Getters = {
   allTenats(state: State): Tenant[];
   currentTenant(state: State): Tenant;
-  getTenantById(state: State): (id: string) => Tenant | undefined;
+  getTenantById(state: State): (id: number) => Tenant | undefined;
 };
 
 const getters: GetterTree<State, any> & Getters = {
@@ -14,7 +14,7 @@ const getters: GetterTree<State, any> & Getters = {
   currentTenant(state) {
     return state.tenant;
   },
-  getTenantById: (state) => (id: string) => {
+  getTenantById: (state) => (id: number) => {
     return state.tenants.find((tenant) => tenant.id === id);
   },
 };

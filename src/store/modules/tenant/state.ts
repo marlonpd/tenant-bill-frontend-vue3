@@ -5,7 +5,7 @@ export type State = {
 
 const state: State = {
   tenants: [],
-  tenant: { id: '', name: '', meterNumber: '', meterInitialReading: 0 },
+  tenant: { id: undefined, name: '', meterNumber: '', meterInitialReading: 0 },
 };
 
 export default state;

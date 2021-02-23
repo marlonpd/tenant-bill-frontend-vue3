@@ -14,12 +14,9 @@ export function usePowerRate() {
   const latestPowerRate = computed(() => {
     const powerRateCnt = store.getters.allPowerRates.length;
 
-    console.log('huhuhu');
     if (powerRateCnt > 0) {
-      console.log('brawragagaga');
       return store.getters.allPowerRates[powerRateCnt - 1];
     }
-    console.log('hihiihi');
 
     return null;
   });

@@ -219,14 +219,26 @@
         newReading.consumedKwh = consumedK.value;
         newReading.bill = currentBill.value;
         newReading.rate = latestPowerRate.value;
-        await uMeterReading.storeMeterReading(newReading).then(() => {
-          toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Successfully added!',
-            life: 3000,
+        await uMeterReading
+          .storeMeterReading(newReading)
+          .then(() => {
+            toggleShowHideForm();
+            toast.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Successfully added!',
+              life: 3000,
+            });
+          })
+          .catch((e) => {
+            console.log(e);
+            toast.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: e.message,
+              life: 3000,
+            });
           });
-        });
       };
 
       return {

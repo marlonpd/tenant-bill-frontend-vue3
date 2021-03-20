@@ -9,7 +9,7 @@ import ColumnGroup from 'primevue/columngroup';     //optional for column groupi
 import ConfirmationService from 'primevue/confirmationservice';
 import ConfirmDialog from 'primevue/confirmdialog';
 import Calendar from 'primevue/calendar';
-
+import TabMenu from 'primevue/tabmenu';
 
 export default function registerGlobalComponents (app: App) {
   app.use(PrimeVue);
@@ -21,5 +21,6 @@ export default function registerGlobalComponents (app: App) {
   app.component('Toast', Toast);
   app.component('DataTable', DataTable);
   app.component('Column', Column);
+  app.component('TabMenu', TabMenu);
   app.component('ColumnGroup', ColumnGroup);
 }

@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteParams } from 'vue-router';
 
-import HomePage from './pages/Home.vue';
+import HomePage from '@/pages/Home.vue';
 import LoginPage from './pages/Login.vue';
 import RegisterPage from './pages/Register.vue';
 import TenantsPage from './pages/Tenants.vue';
@@ -62,9 +62,9 @@ router.beforeEach((to, from, next) => {
     routerPush('login');
   }
 
-  if (to.path === '/') {
-    routerPush('login');
-  }
+  // if (to.path === '/') {
+  //   routerPush('login');
+  // }
 
   next();
 });

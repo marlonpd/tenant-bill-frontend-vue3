@@ -7,6 +7,9 @@ export type State = {
   isSuccessRegistration: boolean;
 };
 
+console.log('JwtService.getToken()test');
+console.log(JwtService.getToken() !== undefined);
+
 const state: State = {
   errors: null,
   user: { id: '', email: '', name: '', token: JwtService.getToken() || '' },

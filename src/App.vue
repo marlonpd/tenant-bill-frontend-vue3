@@ -24,7 +24,11 @@
       Footer,
     },
   })
-  export default class App extends Vue {}
+  export default class App extends Vue {
+    get computedMsg() {
+      return true;
+    }
+  }
 </script>
 
 <style>

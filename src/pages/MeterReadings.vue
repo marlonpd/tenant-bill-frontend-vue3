@@ -75,8 +75,6 @@
       });
 
       onMounted(async () => {
-        console.log('tenantId');
-        console.log(route.params.tenantId);
         if (!route.params.tenantId) {
           toast.add({
             severity: 'error',

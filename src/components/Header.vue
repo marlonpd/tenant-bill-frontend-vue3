@@ -1,6 +1,5 @@
 <template>
-  <!-- header -->
-  <header class="w-full px-6 bg-white">
+  <!-- <header class="w-full px-6 bg-white" v-if="isAuthenticated">
     <div
       class="container mx-auto max-w-4xl md:flex justify-between items-center"
     >
@@ -43,58 +42,15 @@
         </router-link>
       </div>
     </div>
-  </header>
-  <!-- /header -->
+  </header> -->
 
-  <!-- navigation -->
-  <nav
-    class="w-full bg-white md:pt-0 px-6 shadow-lg relative z-20 border-t border-b border-gray-400"
-  >
-    <div
-      class="container mx-auto max-w-4xl md:flex justify-between items-center text-sm md:text-md md:justify-start"
-    >
-      <div
-        class="w-full md:w-1/2 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start"
-      >
-        <a
-          href="#"
-          class="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >Home</a
-        >
-        <a
-          href="#"
-          class="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >Products</a
-        >
-        <a
-          href="#"
-          class="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >About Us</a
-        >
-        <a
-          href="#"
-          class="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >News</a
-        >
-        <a
-          href="#"
-          class="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline"
-          >Contact</a
-        >
-      </div>
-      <div class="w-full md:w-1/2 text-center md:text-right pb-4 md:p-0">
-        <input
-          type="search"
-          placeholder="Search..."
-          class="bg-gray-300 border text-sm p-1"
-        />
-      </div>
-    </div>
-  </nav>
-  <!-- /navigation -->
+  <div class="container mx-auto page-container">
+    <TabMenu :model="items" />
+  </div>
 </template>
 
 <script lang="ts">
+  import { ref, reactive, onMounted } from 'vue';
   import { routerPush } from '../router';
   import { useAuth } from '../composable/useAuth';
 
@@ -102,20 +58,90 @@
     name: 'Header',
     setup() {
       const auth = useAuth();
-      const isAuthenticated = auth.isAuthenticated;
+      // const isAuthenticated = auth.isAuthenticated;
+
+      let isAuthenticated = ref<boolean>(false);
+
+      onMounted(() => {
+        isAuthenticated = auth.isAuthenticated;
+      });
 
       const logout = () => {
         auth.doLogout();
         routerPush('home');
       };
 
+      const items = [
+        {
+          label: 'Sign-Up',
+          class: 'sign-up-tab-item flex-1',
+          icon: 'pi pi-fw pi-user-edit',
+          visible: !isAuthenticated.value,
+          to: '/register',
+        },
+        {
+          label: 'Home',
+          icon: 'pi pi-fw pi-home',
+          to: '/tabmenu',
+          visible: !isAuthenticated.value,
+          class: 'home-tab-item flex-1',
+        },
+        {
+          label: 'Sign In',
+          icon: 'pi pi-fw pi-sign-in',
+          class: 'sign-in-tab-item flex-1',
+          visible: !isAuthenticated.value,
+          to: '/login',
+        },
+
+        {
+          label: 'Power Rates',
+          class: 'sign-up-tab-item flex-1',
+          icon: 'pi pi-fw pi-list',
+          visible: isAuthenticated.value,
+          to: '/power-rates',
+        },
+        {
+          label: 'Tenants',
+          icon: 'pi pi-fw pi-users',
+          to: '/tenants',
+          visible: isAuthenticated.value,
+          class: 'home-tab-item flex-1',
+        },
+        {
+          label: 'Sign Out',
+          icon: 'pi pi-fw pi-sign-out',
+          class: 'sign-in-tab-item flex-1',
+          visible: isAuthenticated.value,
+          command: () => {
+            logout();
+          },
+        },
+      ];
+
       return {
         logout,
         isAuthenticated,
+        items,
       };
     },
   };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style lang="scss">
+  .p-tabmenu {
+    ul > li a.p-menuitem-link {
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+      display: contents;
+    }
+    a.p-menuitem-link {
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+      display: contents;
+    }
+  }
+</style>

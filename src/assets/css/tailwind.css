@@ -52,6 +52,10 @@ ul.tenants-table li {
   border-bottom: 2px gray solid;
 }
 
+.page-container {
+  max-width: 600px;
+}
+
 .tenants-container {
   width: 100%;
   max-height: 90vh;

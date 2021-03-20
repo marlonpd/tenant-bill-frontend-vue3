@@ -1,132 +1,66 @@
 <template>
-  <!-- hero -->
-  <div
-    class="w-full py-24 px-6 bg-cover bg-no-repeat bg-center relative z-10"
-    style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=2100');"
-  >
-    <div class="container max-w-4xl mx-auto text-center">
-      <h1
-        class="text-xl leading-tight md:text-3xl text-center text-gray-100 mb-3"
-      >
-        Lorem ipsum dolor sit amet
-      </h1>
-      <p class="text-md md:text-lg text-center text-white ">
-        Ut enim ad minim veniam, quis nostrud exercitation
+  <div class="container">
+    <nav>
+      <ul>
+        <li class="active"><i class="fa fa-bicycle"></i></li>
+        <li><i class="fa fa-car"></i></li>
+        <li><i class="fa fa-train"></i></li>
+        <li><i class="fa fa-plane"></i></li>
+      </ul>
+    </nav>
+    <article>
+      <h1>Bicycle</h1>
+      <p>
+        Bicycles were introduced in the 19th century in Europe and as of 2003,
+        more than 1 billion have been produced worldwide, twice as many as the
+        number of automobiles that have been produced. They are the principal
+        means of transportation in many regions. They also provide a popular
+        form of recreation, and have been adapted for use as children's toys,
+        general fitness, military and police applications, courier services, and
+        bicycle racing.
       </p>
-
-      <a
-        href="/register"
-        class="mt-6 inline-block bg-white text-black no-underline px-4 py-3 shadow-lg"
-        >Find out more</a
-      >
-    </div>
+    </article>
+    <article>
+      <h1>Car</h1>
+      <p>
+        The year 1886 is regarded as the birth year of the modern car, when
+        German inventor Karl Benz built the Benz Patent-Motorwagen. Cars did not
+        become widely available until the early 20th century. One of the first
+        cars that was accessible to the masses was the 1908 Model T, an American
+        car manufactured by the Ford Motor Company. Cars were rapidly adopted in
+        the United States, but took much longer to be accepted in Western Europe
+        and other parts of the world.
+      </p>
+    </article>
+    <article>
+      <h1>Train</h1>
+      <p>
+        The first trains were rope-hauled, gravity powered or pulled by horses.
+        From the early 19th century almost all were powered by steam
+        locomotives. From the 1910s onwards the steam locomotives began to be
+        replaced by less labor-intensive and cleaner (but more complex and
+        expensive) diesel and electric locomotives, while at about the same time
+        self-propelled multiple unit vehicles of either power system became much
+        more common in passenger service.
+      </p>
+    </article>
+    <article>
+      <h1>Plane</h1>
+      <p>
+        The Wright brothers invented and flew the first airplane in 1903,
+        recognized as "the first sustained and controlled heavier-than-air
+        powered flight". They built on the works of George Cayley dating from
+        1799, who set forth the concept of the modern airplane. Airplanes had a
+        presence in all the major battles of World War II. They were an
+        essential component of the military strategies of the period, such as
+        the American and Japanese aircraft carrier campaigns of the Pacific War.
+      </p>
+    </article>
   </div>
-  <!-- /hero -->
-
-  <!-- home content -->
-  <div class="w-full px-6 py-12 bg-white">
-    <div class="container max-w-4xl mx-auto text-center pb-10">
-      <h3
-        class="text-xl md:text-3xl leading-tight text-center max-w-md mx-auto text-gray-900 mb-12"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      </h3>
-
-      <a href="#" class="bg-black text-white px-4 py-3 no-underline"
-        >Browse our products</a
-      >
-    </div>
-
-    <div
-      class="container max-w-4xl mx-auto text-center flex flex-wrap items-start md:flex-no-wrap"
-    >
-      <div
-        class="my-4 w-full md:w-1/3 flex flex-col items-center justify-center px-4"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800"
-          class="w-full h-64 object-cover mb-6"
-        />
-
-        <h2 class="text-xl leading-tight mb-2">
-          Ut enim ad minim veniam officia deserunt
-        </h2>
-        <p class="mt-3 mx-auto text-sm leading-normal">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur.
-        </p>
-      </div>
-
-      <div
-        class="my-4 w-full md:w-1/3 flex flex-col items-center justify-center px-4"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=800"
-          class="w-full h-64 object-cover mb-6"
-        />
-
-        <h2 class="text-xl leading-tight mb-2">
-          Ut enim ad minim veniam officia deserunt
-        </h2>
-        <p class="mt-3 mx-auto text-sm leading-normal">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur.
-        </p>
-      </div>
-
-      <div
-        class="my-4 w-full md:w-1/3 flex flex-col items-center justify-center px-4"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=800"
-          class="w-full h-64 object-cover mb-6"
-        />
-
-        <h2 class="text-xl leading-tight mb-2">
-          Ut enim ad minim veniam officia deserunt
-        </h2>
-        <p class="mt-3 mx-auto text-sm leading-normal">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- /home content -->
-
-  <!-- about -->
-  <div
-    class="w-full px-6 py-12 text-left bg-gray-300 text-gray-700 leading-normal"
-  >
-    <div
-      class="container max-w-4xl mx-auto flex justify-center flex-wrap md:flex-no-wrap"
-    >
-      <div class="w-full md:w-1-3">
-        <h3 class="text-3xl mb-8 text-black leading-tight">
-          Lorem ipsum dolor sit amet, consectetur adipisicing.
-        </h3>
-
-        <p class="mb-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
-        </p>
-        <p>
-          Aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div class="w-full md:w-2-3 pt-10 md:px-6 md:pt-0">
-        <img
-          src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?w=800"
-          class="w-full h-auto"
-        />
-      </div>
-    </div>
-  </div>
-  <!-- /about -->
+  <p class="attribution">
+    Information sourced from
+    <a href="https://www.wikipedia.org/" target="_blank">Wikipedia</a>
+  </p>
 </template>
 
 <script lang="ts">
@@ -137,3 +71,90 @@
     components: {},
   });
 </script>
+
+<style lang="scss" scoped>
+  body {
+    background: #38444f;
+    font-family: Catamaran, sans-serif;
+    font-size: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-weight: 400;
+  }
+
+  p {
+    font-weight: 400;
+    line-height: 1.4em;
+  }
+
+  a {
+    color: #7c8893;
+    text-decoration: none;
+
+    &:hover {
+      color: #8d9a04;
+    }
+  }
+
+  .attribution {
+    color: #6b7782;
+  }
+
+  .container {
+    background: #f1f1f1;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+    width: 520px;
+  }
+
+  nav,
+  ul {
+    background: #4c4c4c;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    background: #3c3c3c;
+    border-top: solid 1px #3c3c3c;
+    border-bottom: solid 1px #3c3c3c;
+    color: #000;
+    display: flex;
+    height: 80px;
+    width: 80px;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: #4d4d4d;
+      border-color: #fff;
+      color: #fff;
+    }
+
+    i.fa {
+      font-size: 1.6em;
+      margin: auto;
+    }
+
+    &:hover {
+      background: #4d4d4d;
+      cursor: pointer;
+    }
+  }
+
+  article + article {
+    display: none;
+  }
+
+  article {
+    background: #f1f1f1;
+    padding: 0 2em;
+    width: 100%;
+  }
+</style>

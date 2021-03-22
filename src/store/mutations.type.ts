@@ -16,3 +16,5 @@ export const SET_METER_READINGS = 'setMeterReadings';
 export const SET_TENANT = 'setTenatn';
 export const SET_RATE_PER_KWH = 'setRatePerKwh';
 export const TENANT_REMOVE = 'removeTenant';
+export const APPEND_TENANTS = 'appendTenants';
+export const SET_TENANTS_COUNT = 'setTenantsCount';

@@ -1,4 +1,3 @@
-//import { ref } from 'vue';
 import { registerAccount, loginAccount } from '../services/auth';
 import { LOGOUT } from '../store/actions.type';
 import { computed } from 'vue';

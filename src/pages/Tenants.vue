@@ -71,6 +71,21 @@
           </table> -->
         </div>
       </div>
+      <div>
+        <button
+          @click="loadMore()"
+          v-if="!isAllTenantsFetch && !isLoading"
+          class="block w-full bg-blue-600 text-white rounded-sm py-3 text-sm tracking-wide"
+        >
+          Load More
+        </button>
+        <button
+          v-if="!isAllTenantsFetch && isLoading"
+          class="block w-full bg-blue-600 text-white rounded-sm py-3 text-sm tracking-wide"
+        >
+          <i class="pi pi-spin pi-spinner" style="fontSize: 2rem"></i>
+        </button>
+      </div>
     </div>
     <div class="fixed-bottom w-100" style="width:100%;">
       <div class="container">
@@ -82,7 +97,7 @@
 </template>
 
 <script lang="ts">
-  import { onMounted, defineComponent, ref } from 'vue';
+  import { onMounted, defineComponent, ref, reactive } from 'vue';
   import { useTenant } from '../composable/useTenant';
   import CreateTenant from '../components/tenant/CreateTenant.vue';
   import EditTenant from '../components/tenant/EditTenant.vue';
@@ -96,9 +111,14 @@
       const selectedTenantId = ref<number>(0);
       const isEditTenant = ref<boolean>(false);
       const confirm = useConfirm();
+      let pageIndex = 1;
+      const isLoading = ref(false);
 
+      const isAllTenantsFetch = uTenant.isAllTenantsFetch;
       onMounted(async () => {
-        await uTenant.fetchTenants();
+        isLoading.value = true;
+        await uTenant.fetchLimitedTenants(pageIndex++);
+        isLoading.value = false;
       });
 
       const editTenant = async (tenant: Tenant) => {
@@ -125,12 +145,21 @@
         });
       };
 
+      const loadMore = async () => {
+        isLoading.value = true;
+        await uTenant.fetchLimitedTenants(pageIndex++);
+        isLoading.value = false;
+      };
+
       return {
         allTenants: uTenant.allTenants,
         deleteTenant,
         selectedTenantId,
         editTenant,
         isEditTenant,
+        loadMore,
+        isAllTenantsFetch,
+        isLoading,
       };
     },
   });

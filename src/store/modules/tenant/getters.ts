@@ -17,6 +17,9 @@ const getters: GetterTree<State, any> & Getters = {
   getTenantById: (state) => (id: number) => {
     return state.tenants.find((tenant) => tenant.id === id);
   },
+  getIsAllTenantsFetch: (state) => {
+    return state.isAllTenantsFetch;
+  },
 };
 
 export default getters;

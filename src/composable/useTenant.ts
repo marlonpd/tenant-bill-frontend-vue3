@@ -4,15 +4,21 @@ import {
   FETCH_TENANTS,
   DELETE_TENANT,
   UPDATE_TENANT,
+  FETCH_LIMITED_TENANTS,
 } from '../store/actions.type';
 
 export function useTenant() {
   const store = useStore();
 
   const allTenants = computed(() => store.state.tenant.tenants);
+  const isAllTenantsFetch = computed(() => store.getters.getIsAllTenantsFetch);
 
   const fetchTenants = async () => {
     await store.dispatch(FETCH_TENANTS);
+  };
+
+  const fetchLimitedTenants = async (pageIndex: number) => {
+    await store.dispatch(FETCH_LIMITED_TENANTS, pageIndex);
   };
 
   const updateTenant = async (tenant: Tenant) => {
@@ -33,5 +39,7 @@ export function useTenant() {
     deleteTenant,
     updateTenant,
     getTenantById,
+    fetchLimitedTenants,
+    isAllTenantsFetch,
   };
 }

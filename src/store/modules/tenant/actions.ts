@@ -5,12 +5,15 @@ import {
   storeTenant,
   fetchTenant,
   deleteTenant,
+  fetchLimitedTenants,
 } from '@/services/tenant';
 import {
   SET_TENANTS,
   SET_TENANT,
   APPEND_TENANT,
   TENANT_REMOVE,
+  APPEND_TENANTS,
+  SET_TENANTS_COUNT,
 } from '@/store/mutations.type';
 import {
   FETCH_TENANTS,
@@ -18,11 +21,16 @@ import {
   UPDATE_TENANT,
   ADD_NEW_TENANT,
   DELETE_TENANT,
+  FETCH_LIMITED_TENANTS,
 } from '@/store/actions.type';
 import { State } from './state';
 
 export type Actions = {
   [FETCH_TENANTS](context: ActionContext<State, State>): Promise<Tenant[] | []>;
+  [FETCH_LIMITED_TENANTS](
+    context: ActionContext<State, State>,
+    pageIndex: number
+  ): Promise<Tenant[] | []>;
   [FETCH_TENANT](
     context: ActionContext<State, State>,
     id: string
@@ -38,6 +46,15 @@ const actions: ActionTree<State, State> & Actions = {
     console.log(data);
     const tenants: Tenant[] = data.tenants;
     context.commit(SET_TENANTS, tenants);
+    return tenants;
+  },
+  async [FETCH_LIMITED_TENANTS](context, pageIndex: number) {
+    const { data } = await fetchLimitedTenants(pageIndex);
+    console.log(data);
+    const tenants: Tenant[] = data.tenants;
+    context.commit(APPEND_TENANTS, tenants);
+    const tenantsCount = Number(data.count);
+    context.commit(SET_TENANTS_COUNT, tenantsCount);
     return tenants;
   },
   async [FETCH_TENANT](context, tenantId) {

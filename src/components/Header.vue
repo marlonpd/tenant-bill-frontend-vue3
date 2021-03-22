@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, reactive, onMounted } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { routerPush } from '../router';
   import { useAuth } from '../composable/useAuth';
 
@@ -58,12 +58,10 @@
     name: 'Header',
     setup() {
       const auth = useAuth();
-      // const isAuthenticated = auth.isAuthenticated;
-
-      let isAuthenticated = ref<boolean>(false);
+      let isAuthenticated = ref(auth.isAuthenticated);
 
       onMounted(() => {
-        isAuthenticated = auth.isAuthenticated;
+        isAuthenticated = ref(auth.isAuthenticated);
       });
 
       const logout = () => {
@@ -76,21 +74,21 @@
           label: 'Sign-Up',
           class: 'sign-up-tab-item flex-1',
           icon: 'pi pi-fw pi-user-edit',
-          visible: !isAuthenticated.value,
+          visible: () => !isAuthenticated.value,
           to: '/register',
         },
         {
           label: 'Home',
           icon: 'pi pi-fw pi-home',
-          to: '/tabmenu',
-          visible: !isAuthenticated.value,
+          to: '/home',
+          visible: () => !isAuthenticated.value,
           class: 'home-tab-item flex-1',
         },
         {
           label: 'Sign In',
           icon: 'pi pi-fw pi-sign-in',
           class: 'sign-in-tab-item flex-1',
-          visible: !isAuthenticated.value,
+          visible: () => !isAuthenticated.value,
           to: '/login',
         },
 
@@ -98,21 +96,21 @@
           label: 'Power Rates',
           class: 'sign-up-tab-item flex-1',
           icon: 'pi pi-fw pi-list',
-          visible: isAuthenticated.value,
+          visible: () => isAuthenticated.value,
           to: '/power-rates',
         },
         {
           label: 'Tenants',
           icon: 'pi pi-fw pi-users',
-          to: '/tenants',
-          visible: isAuthenticated.value,
+          visible: () => isAuthenticated.value,
           class: 'home-tab-item flex-1',
+          to: '/tenants',
         },
         {
           label: 'Sign Out',
           icon: 'pi pi-fw pi-sign-out',
           class: 'sign-in-tab-item flex-1',
-          visible: isAuthenticated.value,
+          visible: () => isAuthenticated.value,
           command: () => {
             logout();
           },

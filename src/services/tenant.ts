@@ -4,6 +4,10 @@ export const fetchTenants = async () => {
   return await runGet('api/tenants');
 };
 
+export const fetchLimitedTenants = async (pageIndex: number) => {
+  return await runGet(`api/tenants/${pageIndex}/get`);
+};
+
 export const updateTenant = async (tenant: Tenant) => {
   return await runPost('api/tenant/update', tenant);
 };

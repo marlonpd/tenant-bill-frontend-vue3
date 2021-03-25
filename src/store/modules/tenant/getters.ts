@@ -5,6 +5,7 @@ export type Getters = {
   allTenats(state: State): Tenant[];
   currentTenant(state: State): Tenant;
   getTenantById(state: State): (id: number) => Tenant | undefined;
+  getIsAllTenantsFetch(state: State): boolean;
 };
 
 const getters: GetterTree<State, any> & Getters = {

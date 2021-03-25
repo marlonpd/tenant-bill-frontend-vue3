@@ -29,7 +29,21 @@
             </tbody>
           </table>
         </div>
-
+        <div>
+          <button
+            @click="loadMore()"
+            v-if="!isAllPowerRatesFetch && !isLoading"
+            class="block w-full bg-blue-600 text-white rounded-sm py-3 text-sm tracking-wide"
+          >
+            Load More
+          </button>
+          <button
+            v-if="!isAllPowerRatesFetch && isLoading"
+            class="block w-full bg-blue-600 text-white rounded-sm py-3 text-sm tracking-wide"
+          >
+            <i class="pi pi-spin pi-spinner" style="fontSize: 2rem"></i>
+          </button>
+        </div>
         <div class="fixed-bottom w-100" style="width:100%;">
           <div class="container">
             <CreatePowerRate></CreatePowerRate>
@@ -41,11 +55,7 @@
 </template>
 
 <script lang="ts">
-  import { onMounted, defineComponent, ref, reactive } from 'vue';
-  import { useMeterReading } from '../composable/useMeterReading';
-  import { useTenant } from '../composable/useTenant';
-  import { useRoute } from 'vue-router';
-  import { useConfirm } from 'primevue/useconfirm';
+  import { onMounted, defineComponent, ref } from 'vue';
   import { usePowerRate } from '../composable/usePowerRate';
   import CreatePowerRate from '../components/powerRate/CreatePowerRate.vue';
 
@@ -54,12 +64,27 @@
     components: { CreatePowerRate },
     async setup() {
       const uPowerRate = usePowerRate();
-      onMounted(() => {
-        uPowerRate.fetchPowerRates();
+      let pageIndex = 1;
+      const isLoading = ref(false);
+      const isAllPowerRatesFetch = uPowerRate.isAllPowerRatesFetch;
+
+      onMounted(async () => {
+        isLoading.value = true;
+        await uPowerRate.fetchLimitedPowerRates(pageIndex++);
+        isLoading.value = false;
       });
+
+      const loadMore = async () => {
+        isLoading.value = true;
+        await uPowerRate.fetchLimitedPowerRates(pageIndex++);
+        isLoading.value = false;
+      };
 
       return {
         allPowerRates: uPowerRate.allPowerRates,
+        isAllPowerRatesFetch,
+        isLoading,
+        loadMore,
       };
     },
   });

@@ -1,6 +1,7 @@
 export type State = {
   powerRates: PowerRate[];
   powerRate: PowerRate;
+  isAllPowerRatesFetch: boolean;
 };
 
 const state: State = {
@@ -11,13 +12,7 @@ const state: State = {
     rate: 0,
     created: undefined,
   },
+  isAllPowerRatesFetch: false,
 };
 
 export default state;
-
-// export default {
-//   powerRates : [],
-//   powerRate : {
-//       rate: 0
-//   }
-// }

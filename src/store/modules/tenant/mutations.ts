@@ -24,10 +24,6 @@ const mutations: MutationTree<State> & Mutations = {
   [SET_TENANTS_COUNT](state, tenantsCount) {
     state.tenantsCount = tenantsCount;
     state.isAllTenantsFetch = state.tenants.length === tenantsCount;
-    console.log(SET_TENANTS_COUNT);
-    console.log(state.tenants.length);
-    console.log(tenantsCount);
-    console.log(state.isAllTenantsFetch);
   },
   [APPEND_TENANTS](state, tenants) {
     let tenant: Tenant = {

@@ -18,3 +18,5 @@ export const SET_RATE_PER_KWH = 'setRatePerKwh';
 export const TENANT_REMOVE = 'removeTenant';
 export const APPEND_TENANTS = 'appendTenants';
 export const SET_TENANTS_COUNT = 'setTenantsCount';
+export const APPEND_POWER_RATES = 'appendPowerRates';
+export const SET_POWER_RATES_COUNT = 'setPowerRatesCount';

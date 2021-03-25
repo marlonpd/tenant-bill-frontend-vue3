@@ -4,6 +4,10 @@ export const fetchPowerRates = async () => {
   return await runGet('api/power-rates');
 };
 
+export const fetchLimitedPowerRates = async (pageIndex: number) => {
+  return await runGet(`api/power-rates/${pageIndex}/get`);
+};
+
 export const updatePowerRate = async (powerRate: PowerRate) => {
   return await runPost('api/power-rate/update', powerRate);
 };

@@ -45,7 +45,8 @@
   </header> -->
 
   <div class="container mx-auto page-container">
-    <TabMenu :model="items" />
+    <TabMenu v-if="isAuthenticated" :model="authItems" />
+    <TabMenu v-else :model="publicItems" />
   </div>
 </template>
 
@@ -69,7 +70,33 @@
         routerPush('home');
       };
 
-      const items = [
+      const authItems = [
+        {
+          label: 'Power Rates',
+          class: 'sign-up-tab-item flex-1',
+          icon: 'pi pi-fw pi-list',
+          visible: () => isAuthenticated.value,
+          to: '/power-rates',
+        },
+        {
+          label: 'Tenants',
+          icon: 'pi pi-fw pi-users',
+          visible: () => isAuthenticated.value,
+          class: 'tenants-tab-item flex-1',
+          to: '/tenants',
+        },
+        {
+          label: 'Sign Out',
+          icon: 'pi pi-fw pi-sign-out',
+          class: 'sign-out-tab-item flex-1',
+          visible: () => isAuthenticated.value,
+          command: () => {
+            logout();
+          },
+        },
+      ];
+
+      const publicItems = [
         {
           label: 'Sign-Up',
           class: 'sign-up-tab-item flex-1',
@@ -91,36 +118,13 @@
           visible: () => !isAuthenticated.value,
           to: '/login',
         },
-
-        {
-          label: 'Power Rates',
-          class: 'sign-up-tab-item flex-1',
-          icon: 'pi pi-fw pi-list',
-          visible: () => isAuthenticated.value,
-          to: '/power-rates',
-        },
-        {
-          label: 'Tenants',
-          icon: 'pi pi-fw pi-users',
-          visible: () => isAuthenticated.value,
-          class: 'home-tab-item flex-1',
-          to: '/tenants',
-        },
-        {
-          label: 'Sign Out',
-          icon: 'pi pi-fw pi-sign-out',
-          class: 'sign-in-tab-item flex-1',
-          visible: () => isAuthenticated.value,
-          command: () => {
-            logout();
-          },
-        },
       ];
 
       return {
         logout,
         isAuthenticated,
-        items,
+        publicItems,
+        authItems,
       };
     },
   };

@@ -39,6 +39,11 @@ export const router = createRouter({
       path: '/power-rates',
       component: PowerRatesPage,
     },
+    {
+      name: 'sign.out',
+      path: '/sign-out',
+      component: PowerRatesPage,
+    },
   ],
 });
 

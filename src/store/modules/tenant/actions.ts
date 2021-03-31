@@ -50,9 +50,12 @@ const actions: ActionTree<State, State> & Actions = {
   },
   async [FETCH_LIMITED_TENANTS](context, pageIndex: number) {
     const { data } = await fetchLimitedTenants(pageIndex);
-    console.log(data);
     const tenants: Tenant[] = data.tenants;
-    context.commit(APPEND_TENANTS, tenants);
+    if (pageIndex === 1) {
+      context.commit(SET_TENANTS, tenants);
+    } else {
+      context.commit(APPEND_TENANTS, tenants);
+    }
     const tenantsCount = Number(data.count);
     context.commit(SET_TENANTS_COUNT, tenantsCount);
     return tenants;

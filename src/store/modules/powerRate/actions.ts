@@ -43,7 +43,11 @@ const actions: ActionTree<State, State> & Actions = {
   },
   async [FETCH_LIMITED_POWER_RATES](context, pageIndex: number) {
     const { data } = await fetchLimitedPowerRates(pageIndex);
-    context.commit(APPEND_POWER_RATES, data.powerRates);
+    if (pageIndex === 1) {
+      context.commit(SET_POWER_RATES, data.powerRates);
+    } else {
+      context.commit(APPEND_POWER_RATES, data.powerRates);
+    }
     const powerRatesCount = Number(data.count);
     context.commit(SET_POWER_RATES_COUNT, powerRatesCount);
     return data;

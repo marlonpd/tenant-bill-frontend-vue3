@@ -22,3 +22,4 @@ export const DELETE_TENANT = 'deleteTenant';
 export const UPDATE_TENANT = 'updateTenant';
 export const FETCH_LIMITED_TENANTS = 'fetchLimitedTenants';
 export const FETCH_LIMITED_POWER_RATES = 'fetchLimitedPowerRates';
+export const FETCH_LIMITED_METER_READINGS = 'fetchLimitedMeterReadings';

@@ -4,6 +4,13 @@ export const fetchMeterReadings = async (tenantId: number) => {
   return await runGet(`api/meter-readings/${tenantId}`);
 };
 
+export const fetchLimitedMeterReadings = async (
+  tenantId: number,
+  pageIndex: number
+) => {
+  return await runGet(`api/meter-readings/${tenantId}/${pageIndex}`);
+};
+
 export const updateMeterReading = async (meterReading: MeterReading) => {
   return await runPost('api/meter-readings/update', meterReading);
 };

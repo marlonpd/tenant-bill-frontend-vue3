@@ -20,3 +20,4 @@ export const APPEND_TENANTS = 'appendTenants';
 export const SET_TENANTS_COUNT = 'setTenantsCount';
 export const APPEND_POWER_RATES = 'appendPowerRates';
 export const SET_POWER_RATES_COUNT = 'setPowerRatesCount';
+export const APPEND_METER_READINGS = 'appendMeterReadings';

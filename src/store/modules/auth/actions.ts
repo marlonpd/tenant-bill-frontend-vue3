@@ -38,20 +38,12 @@ const actions: ActionTree<State, State> & Actions = {
     return new Promise((resolve, reject) =>
       loginAccount(loginCredential)
         .then((response: any) => {
-          console.log('successful ');
-          console.log(response);
-          console.log('successful ');
           const token: string = response.data.token;
-          // const user: User = response.user;
-
-          console.log('successful ' + token);
           JwtService.saveToken(token);
           context.commit(SET_AUTH, response);
           resolve(response);
         })
         .catch((response: any) => {
-          console.log(response);
-          // context.commit(SET_ERROR, [response.data.error]);
           reject(response);
         })
     );

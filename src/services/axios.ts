@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // import API_URL from "./config";
 import JwtService from './jwt';
-
-// import axios from 'axios'
-// import store from '../store'
-
+import { routerPush } from '../router';
+import { useStore } from 'vuex';
+import { LOGOUT } from '../store/actions.type';
 const baseURL: string = process.env.VUE_APP_API_BASE_URL?.toString() || '';
 
 const service = axios.create({
@@ -25,12 +24,22 @@ service.interceptors.request.use(
   }
 );
 
-service.interceptors.response.use((response) => {
-  console.log(response);
-  if (response.status !== 200) return Promise.reject(response.data);
+service.interceptors.response.use(
+  (response) => {
+    if (response.status !== 200) return Promise.reject(response.data);
 
-  return response;
-});
+    return response;
+  },
+  (error) => {
+    console.log(error.response.status);
+    if (error.response.status === 401) {
+      //JwtService.destroyToken();
+      const store = useStore();
+      store.dispatch(LOGOUT);
+      routerPush('home');
+    }
+  }
+);
 
 export const setHeader = () => {
   if (JwtService.getToken()) {
